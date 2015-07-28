@@ -1,0 +1,5 @@
+suites:
+    main:
+        namespace: oblagio
+        psr4_prefix: oblagio
+        src_path: app

@@ -1,0 +1,16 @@
+.logoObgl
+{
+	font-size:24px;
+	color:white;
+}
+
+.logoObgl:hover
+{
+	color:white;
+	text-decoration: none
+}
+
+.errorMessage
+{
+	color:red;
+}
