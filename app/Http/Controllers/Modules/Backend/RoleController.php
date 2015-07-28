@@ -27,7 +27,7 @@ class RoleController extends Controller
     public function postCreate(Request $request)
     {
         $model = new Role;
-        $validator = Validator::make($request->all() , $model->rules);
+        $validator = Validator::make($request->all() , $model->rules() );
         if($validator->fails())
         {
             return Redirect::back()
@@ -43,8 +43,9 @@ class RoleController extends Controller
         
     }
     
-    public function getUpdate($id)
+    public function getUpdate(Request $request , $id)
     {
+       
         $model = Role::find($id);
         return view('Modules.Backend.role.form' , [
             'model' => $model
@@ -54,7 +55,7 @@ class RoleController extends Controller
     public function postUpdate(Request $request , $id)
     {
         $model = Role::find($id);
-        $validator = Validator::make($request->all() , $model->rules);
+        $validator = Validator::make($request->all() , $model->rules() );
         if($validator->fails())
         {
             return Redirect::back()
@@ -62,7 +63,7 @@ class RoleController extends Controller
                     ->withInput();
         }
         
-        $model->create($request->all());
+        $model->update($request->all());
         
         \Session::flash('message' , 'Data Has Been Saved');
          return Site::redirectAction('index');
