@@ -10,6 +10,6 @@ class Role extends Model
     public $guarded = [];
     
     public $rules = [
-        'title' => 'required|unique:roles',
+        'title' => 'required|alpha|unique:roles',
     ];
 }

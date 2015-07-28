@@ -14,14 +14,15 @@
         
         <div class="maincontent">
             <div class="maincontentinner">
-                  <div class="widgetbox box-inverse">
+
+                <div class="widgetbox box-inverse">
                         <h4 class="widgettitle">Form Bordered</h4>
                         <div class="widgetcontent nopadding">
-                            {!! Form::open(['class' => 'stdform stdform2' ,  'enctype' => 'multipart/form-data']) !!}
+                            {!! Form::model($model , ['class' => 'stdform stdform2' ,  'enctype' => 'multipart/form-data']) !!}
                                     <p>
                                         <label>Title</label>
                                         <span class="field">
-                                            {!! Form::text('title' , old('title') , ['class' => 'input-xxlarge' ] ) !!}
+                                            {!! Form::text('title' , null , ['class' => 'input-xxlarge' ] ) !!}
                                            &nbsp; <span class = 'errorMessage'>{{ $errors->first('title') }}</span>
                                         </span>
                                     </p>

@@ -43,6 +43,32 @@ class RoleController extends Controller
         
     }
     
+    public function getUpdate($id)
+    {
+        $model = Role::find($id);
+        return view('Modules.Backend.role.form' , [
+            'model' => $model
+        ]);
+    }
+    
+    public function postUpdate(Request $request , $id)
+    {
+        $model = Role::find($id);
+        $validator = Validator::make($request->all() , $model->rules);
+        if($validator->fails())
+        {
+            return Redirect::back()
+                    ->withErrors($validator)
+                    ->withInput();
+        }
+        
+        $model->create($request->all());
+        
+        \Session::flash('message' , 'Data Has Been Saved');
+         return Site::redirectAction('index');
+    }
+    
+    
     public function getDelete($id)
     {
         $model = Role::find($id);
