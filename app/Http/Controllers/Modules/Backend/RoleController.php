@@ -8,6 +8,7 @@ use Validator;
 use oblagio\Helpers\Site;
 use oblagio\Models\Role;
 use oblagio\Helpers\Scaffolding;
+use Redirect;
 class RoleController extends Controller
 {
     public function getIndex()
@@ -25,7 +26,19 @@ class RoleController extends Controller
     
     public function postCreate(Request $request)
     {
-   //     $validator = Validator::make($request->all());
+        $model = new Role;
+        $validator = Validator::make($request->all() , $model->rules);
+        if($validator->fails())
+        {
+            return Redirect::back()
+                    ->withErrors($validator)
+                    ->withInput();
+        }
+        
+        $model->create($request->all());
+        
+        \Session::flash('message' , 'Data Has Been Saved');
+         return Site::redirectAction('index');
         
         
     }
@@ -35,7 +48,7 @@ class RoleController extends Controller
         $model = Role::find($id);
         if($model === null)
         {
-           return redirect('/404');
+           return \Redirect('/404');
         }else{
         
             $model->delete();

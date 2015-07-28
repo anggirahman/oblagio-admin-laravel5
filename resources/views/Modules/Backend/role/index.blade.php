@@ -9,7 +9,7 @@
       'primaryKey' => 'id',
       'model' => Role::orderBy('id' , 'desc'),
       'field' => ['id' , 'title'],
-      'search' => ['title'],
+      'search' => ['title' , 'id'],
       'buttons' => ['create' , 'update' , 'delete'],
       'pageSize' => 10,
     ]);

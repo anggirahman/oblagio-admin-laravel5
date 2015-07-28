@@ -8,11 +8,7 @@
 @section('content')
 
 
-  @if(\Session::has('message'))
-    <div class="alert alert-info">
-        {{ Session::get('message') }}
-    </div>
-  @endif
+
 	<div class="pageheader">
             
             <div class="pageicon"><span class="iconfa-table"></span></div>
@@ -24,6 +20,11 @@
         
         <div class="maincontent">
             <div class="maincontentinner">
+                  @if(\Session::has('message'))
+                    <div class="alert alert-info">
+                        {{ Session::get('message') }}
+                    </div>
+                  @endif
                 <div>
                		<?=  HTML::link('obgl/default/create' , 'Create' , ['class' => 'btn btn-primary'] ) ?>
                </div>

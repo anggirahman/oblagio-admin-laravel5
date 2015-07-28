@@ -1,5 +1,6 @@
 <?php namespace oblagio\Helpers;
-
+use Redirect;
+use Request;
 class Site
 {
 	public static function main()
@@ -84,28 +85,35 @@ class Site
             return strtolower($replace);
         }
         
-public static function generateController($controller)
-{
-    $namespace = self::arrExplode($controller , 'namespace');
-    $fixController = self::arrExplode($controller , 'controller');
+        public static function generateController($controller)
+        {
+            $namespace = self::arrExplode($controller , 'namespace');
+            $fixController = self::arrExplode($controller , 'controller');
 
-return "<?php namespace oblagio\Http\Controllers$namespace;
+        return "<?php namespace oblagio\Http\Controllers$namespace;
 
-            use Illuminate\Http\Request;
+                    use Illuminate\Http\Request;
 
-            use oblagio\Http\Requests;
-            use oblagio\Http\Controllers\Controller;
-            use Validator;
-            use oblagio\Helpers\Site;
+                    use oblagio\Http\Requests;
+                    use oblagio\Http\Controllers\Controller;
+                    use Validator;
+                    use oblagio\Helpers\Site;
 
-            class $fixController extends Controller
-            {
-                public function getIndex()
-                {
-                    // Your Elegan code here
-                }
-            }
-";
-}
+                    class $fixController extends Controller
+                    {
+                        public function getIndex()
+                        {
+                            // Your Elegan code here
+                        }
+                    }
+        ";
+        }
+        
+        
+        public static function redirectAction($action)
+        {
+            $url = "/".Request::segment(1)."/".Request::segment(2)."/".$action;
+            return Redirect($url);
+        }
 
 }
