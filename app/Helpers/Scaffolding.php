@@ -8,7 +8,8 @@
     {
         public static function generateLink($action , $id = "")
         {
-               return url($generateLink = Site::main()['routeBackend']."/".Site::aliasUrl(Request::segment(2))."/".$action."/".$id);
+              // return url($generateLink = Site::main()['routeBackend']."/".Site::aliasUrl(Request::segment(2))."/".$action."/".$id);
+             return url($generateLink = Request::segment(1)."/".Site::aliasUrl(Request::segment(2))."/".$action."/".$id);
         }
         
         public static function buttons($actions = [] ,  $id , $boolean = "" )

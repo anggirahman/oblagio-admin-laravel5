@@ -52,7 +52,6 @@
                                                             
                                     <p class="stdformbutton">
                                         <button class="btn btn-primary">Submit Button</button>
-                                        <button class="btn" type="reset">Reset Button</button>
                                     </p>
                             {!! Form::close() !!}
                         </div><!--widgetcontent-->

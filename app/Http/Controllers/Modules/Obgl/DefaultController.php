@@ -53,11 +53,25 @@ class DefaultController extends Controller
        return redirect(Site::routeGenerator()."/default/index");
    }
    
-   public function getTes()
-   {
-     // echo Scaffolding::buttons(['create' , 'update']);
-        echo Scaffolding::buttons(['update'] , 4);
-   }
-   
+  public function getDelete($id)
+  {
+      $model = Menu::find($id);
+      if($model === null)
+      {
+          return redirect('404');
+      }else{
+          $path = app_path()."\Http\Controllers\\";
+          $controllerPath = $path.$model->controller.".php";
+          
+          if(file_exists($controllerPath))
+          {
+              @unlink($controllerPath);
+          }
+          
+          $model->delete();
+          \Session::flash('message' , 'Data telah di hapus !');
+          return redirect()->back();
+      }
+  }
  
 }
