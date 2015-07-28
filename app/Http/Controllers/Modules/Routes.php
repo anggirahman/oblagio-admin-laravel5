@@ -4,6 +4,7 @@ use oblagio\Models\Menu;
 
 $menu = Menu::where('controller' , '!=' , '#')->get();
 Route::get(Site::main()['routeGenerator'] , 'Modules\Obgl\DefaultController@getIndex');
+Route::get(Site::main()['routeBackend'] , 'Modules\Backend\DefaultController@getIndex');
 Route::controller(Site::main()['routeGenerator']."/default" , 'Modules\Obgl\DefaultController');
 foreach($menu as $row)
 {
