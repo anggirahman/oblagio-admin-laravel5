@@ -20,7 +20,7 @@
                         {
                             $cekUrl = '#';
                         }else{
-                            $cekUrl =  Site::main()['routeBackend']."/".Site::aliasUrl($parent->title);
+                            $cekUrl =  Site::routeBackend()."/".Site::aliasUrl($parent->title);
                         }
                        
                         $setChild = Menu::whereParentId($parent->id)->orderBy('order' , 'asc');
@@ -40,7 +40,7 @@
 
                                         echo "<li>";
 
-                                            echo  HTML::link(Site::main()['routeBackend']."/".Site::aliasUrl($child->title), $child->title);
+                                            echo  HTML::link(Site::routeBackend()."/".Site::aliasUrl($child->title), $child->title);
 
                                         echo "</li>";
 

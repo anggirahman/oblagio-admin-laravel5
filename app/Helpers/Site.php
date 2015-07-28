@@ -1,37 +1,32 @@
 <?php namespace oblagio\Helpers;
 use Redirect;
 use Request;
+use oblagio\OblagioConfig\config;
+
 class Site
 {
-	public static function main()
+	
+         public static function routeBackend()
 	{
-		return [
-			'applicationName' => 'Oblagio Task',
-			'routeBackend' => 'admin-cp',
-			'routeGenerator' => 'obgl',
-		];
-	}
-
-	public static function routeBackend()
-	{
-		return self::main()['routeBackend'];
+		return config::main()['routeBackend'];
+                
 	}
         
         public static function routeGenerator()
 	{
-		return self::main()['routeGenerator'];
+		return config::main()['routeGenerator'];
 	}
 
 	public static function applicationName()
 	{
-		return self::main()['applicationName'];
+		return config::main()['applicationName'];
 	}
 
 	public static function generateLink($url = "")
 	{
 		if(empty($url))
 		{
-			return self::routeBackend()."/".$url;
+			return config::routeBackend()."/".$url;
 		}
 	}
         
