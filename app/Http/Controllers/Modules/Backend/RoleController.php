@@ -27,7 +27,7 @@ class RoleController extends Controller
     public function postCreate(Request $request)
     {
         $model = new Role;
-        $validator = Validator::make($request->all() , $model->rules() );
+        $validator = Validator::make($request->all() , $model->rules() , $model->messages() );
         if($validator->fails())
         {
             return Redirect::back()
@@ -55,7 +55,7 @@ class RoleController extends Controller
     public function postUpdate(Request $request , $id)
     {
         $model = Role::find($id);
-        $validator = Validator::make($request->all() , $model->rules() );
+        $validator = Validator::make($request->all() , $model->rules() , $model->messages() );
         if($validator->fails())
         {
             return Redirect::back()

@@ -15,11 +15,18 @@ class Role extends Model
         $uri = Request::segment(3);
         if($uri == 'create')
         {
-            return ['title' => 'required|alpha|unique:roles'];
+            return ['title' => 'required|regex:[A-Za-z ]|unique:roles'];
         
         }elseif($uri == 'update'){
             $model = $this->find(Request::segment(4));
-            return ['title' => 'required|alpha|unique:roles,title,'.$model->id];
+            return ['title' => 'required|regex:[A-Za-z ]|unique:roles,title,'.$model->id];
         }
+    }
+    
+    public function messages()
+    {
+        return [
+            'regex' => ':attribute harus huruf !'
+        ];
     }
 }
