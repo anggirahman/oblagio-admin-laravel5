@@ -50,7 +50,7 @@
                            <td>{{ $row->title }}</td>
                            <td>{{ $row->controller }}</td>
                            <td>{{ $row->order }}</td>
-                           <td><?= Scaffolding::buttons(['delete'] , $row->id) ?></td>
+                           <td><?= Scaffolding::buttons(['update','delete'] , $row->id) ?></td>
                         </tr>
                    			
                         <?php $modelChild = Menu::whereParentId($row->id)->get() ?>
@@ -63,7 +63,7 @@
                            <td>{{ $rowC->title }}</td>
                            <td>{{ $rowC->controller }}</td>
                            <td>{{ $rowC->order }}</td>
-                           <td><?= Scaffolding::buttons(['delete'] , $rowC->id) ?></td>
+                           <td><?= Scaffolding::buttons(['update','delete'] , $rowC->id) ?></td>
                         </tr>
 
                         @endforeach

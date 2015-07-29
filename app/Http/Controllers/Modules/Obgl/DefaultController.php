@@ -10,6 +10,7 @@ use oblagio\Models\Menu;
 use Validator;
 use oblagio\Helpers\Site;
 use oblagio\Helpers\Scaffolding;
+use Redirect;
 
 class DefaultController extends Controller
 {
@@ -17,6 +18,7 @@ class DefaultController extends Controller
   public function __construct()
   {
       $this->model = new Menu;
+      $this->listParent = Menu::whereParentId(0)->lists('title' , 'id');
   }
   
   public function getIndex()
@@ -27,11 +29,13 @@ class DefaultController extends Controller
   
   public function getCreate()
   {
-    $listParent =  Menu::whereParentId(0)->lists('title' , 'id');
     return view('Modules.OblagioGenerator.default.form' ,[
-       'listParent' => $listParent 
+       'listParent' => $this->listParent ,
+        'model' => $this->model
     ]);
   }
+  
+  
   
    public function postCreate(Request $request)
    {
@@ -53,6 +57,27 @@ class DefaultController extends Controller
        return redirect(Site::routeGenerator()."/default/index");
    }
    
+   public function getUpdate($id)
+  {
+    return view('Modules.OblagioGenerator.default.form_update' ,[
+       'listParent' => $this->listParent ,
+        'model' => $this->model->find($id)
+    ]);
+  }
+  
+  public function postUpdate(Request $request , $id)
+  {
+      $validator = Validator::make($request->all() , ['title' => 'required|alpha|unique:menus,title,'.$id] );
+      if($validator->fails())
+      {
+          return Redirect::back()->withErrors($validator)->withInput();
+      }
+      
+      $model = $this->model->find($id);
+      $model->update($request->all());
+      return Site::redirectAction('index');
+  }
+  
   public function getDelete($id)
   {
       $model = Menu::find($id);

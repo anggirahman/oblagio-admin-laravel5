@@ -1,5 +1,6 @@
 <?php
     use oblagio\Helpers\Site; 
+   // print_r($errors);
 ?>
 @extends('layouts.backend')
 @section('content')
@@ -28,27 +29,11 @@
                                     <p>
                                         <label>Title</label>
                                         <span class="field">
-                                            {!! Form::text('title' , old('title') , ['class' => 'input-xxlarge'] ) !!}
+                                            {!! Form::text('title' ,null , ['class' => 'input-xxlarge'] ) !!}
                                            &nbsp; <span class = 'errorMessage'>{{ $errors->first('title') }}</span>
                                         </span>
                                     </p>
                                     
-                                     <p>
-                                        <label>Controller</label>
-                                        <span class="field">
-                                            {!! Form::text('controller' , old('controller') , ['class' => 'input-xxlarge'] ) !!}
-                                          &nbsp;   <span class = 'errorMessage'>{{ $errors->first('controller') }}</span>
-                                        </span>
-                                    </p>
-                                    
-                                    <p>
-                                        <label>Order</label>
-                                        <span class="field">
-                                            {!! Form::text('order' , old('order') , ['class' => 'input-xxlarge'] ) !!}
-                                          &nbsp;   <span class = 'errorMessage'>{{ $errors->first('order') }}</span>
-                                        </span>
-                                    </p>
-                                                            
                                     <p class="stdformbutton">
                                         <button class="btn btn-primary">Submit Button</button>
                                     </p>
